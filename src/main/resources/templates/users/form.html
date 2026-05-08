@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create User</title>
+
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/user.css}">
+</head>
+<body>
+
+<div class="container">
+
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+    <div class="main-content">
+
+        <div th:replace="~{fragments/header :: header}"></div>
+
+        <div class="content">
+
+            <div class="form-container">
+
+                <h2>Create User</h2>
+
+                <div
+                        class="error"
+                        th:if="${error}"
+                        th:text="${error}"
+                ></div>
+
+                <form
+                        method="post"
+                        th:action="@{/users/create}"
+                >
+
+                    <div class="form-group">
+
+                        <label>Full Name</label>
+
+                        <input
+                                type="text"
+                                name="fullName"
+                                th:value="${user.fullName}"
+                                required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Email</label>
+
+                        <input
+                                type="email"
+                                name="email"
+                                th:value="${user.email}"
+                                required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Phone</label>
+
+                        <input
+                                type="text"
+                                name="phone"
+                                th:value="${user.phone}"
+                        >
+
+                    </div>
+
+                    <div class="form-actions">
+
+                        <a
+                                class="back-btn"
+                                th:href="@{/users}"
+                        >
+                            Back
+                        </a>
+
+                        <button type="submit">
+                            Save
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Voucher Usage History</title>
+
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/usage.css}">
+</head>
+<body>
+
+<div class="container">
+
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+    <div class="main-content">
+
+        <div th:replace="~{fragments/header :: header}"></div>
+
+        <div class="content">
+
+            <div class="top-bar">
+
+                <h2>Voucher Usage History</h2>
+
+                <a
+                        class="create-btn"
+                        th:href="@{/voucher-usages/use}"
+                >
+                    Use Voucher
+                </a>
+
+            </div>
+
+            <div
+                    class="success"
+                    th:if="${param.success}"
+            >
+                Use voucher successfully
+            </div>
+
+            <table>
+
+                <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>User ID</th>
+                    <th>Voucher ID</th>
+                    <th>Used At</th>
+                    <th>Quantity Left</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr th:each="usage : ${usages}">
+
+                    <td th:text="${usage.usageId}"></td>
+
+                    <td th:text="${usage.userId}"></td>
+
+                    <td th:text="${usage.voucherId}"></td>
+
+                    <td th:text="${usage.usedAt}"></td>
+
+                    <td th:text="${usage.remainingQuantity}"></td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

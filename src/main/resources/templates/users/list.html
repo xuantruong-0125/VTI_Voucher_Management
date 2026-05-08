@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/user.css}">
+</head>
+<body>
+
+<div class="container">
+
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+    <div class="main-content">
+
+        <div th:replace="~{fragments/header :: header}"></div>
+
+        <div class="content">
+
+            <div class="top-bar">
+
+                <h2>User Management</h2>
+
+                <a
+                        class="create-btn"
+                        th:href="@{/users/create}"
+                >
+                    Create User
+                </a>
+
+            </div>
+
+            <table>
+
+                <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Created At</th>
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr th:each="user : ${users}">
+
+                    <td th:text="${user.id}"></td>
+
+                    <td th:text="${user.fullName}"></td>
+
+                    <td th:text="${user.email}"></td>
+
+                    <td th:text="${user.phone}"></td>
+
+                    <td th:text="${user.createdAt}"></td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

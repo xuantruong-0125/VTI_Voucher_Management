@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Voucher Form</title>
+
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/voucher.css}">
+</head>
+<body>
+
+<div class="container">
+
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+    <div class="main-content">
+
+        <div th:replace="~{fragments/header :: header}"></div>
+
+        <div class="content">
+
+            <div class="form-container">
+
+                <h2>Voucher Form</h2>
+
+                <div
+                        class="error"
+                        th:if="${error}"
+                        th:text="${error}"
+                ></div>
+
+                <form
+                        method="post"
+                        th:action="${isEdit}
+                        ? @{/vouchers/edit/{id}(id=${voucherId})}
+                        : @{/vouchers/create}"
+                >
+
+                    <div class="form-group">
+                        <label>Code</label>
+
+                        <input
+                                type="text"
+                                name="code"
+                                th:value="${voucher.code}"
+                                required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Discount Percent</label>
+
+                        <input
+                                type="number"
+                                name="discountPercent"
+                                th:value="${voucher.discountPercent}"
+                                required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Quantity</label>
+
+                        <input
+                                type="number"
+                                name="quantity"
+                                th:value="${voucher.quantity}"
+                                required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Expired Date</label>
+
+                        <input
+                                type="date"
+                                name="expiredDate"
+                                th:value="${voucher.expiredDate}"
+                                required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Status</label>
+
+                        <select name="status">
+
+                            <option value="ACTIVE">
+                                ACTIVE
+                            </option>
+
+                            <option value="INACTIVE">
+                                INACTIVE
+                            </option>
+
+                        </select>
+                    </div>
+
+                    <div class="form-actions">
+
+                        <a
+                                class="back-btn"
+                                th:href="@{/vouchers}"
+                        >
+                            Back
+                        </a>
+
+                        <button type="submit">
+                            Save
+                        </button>
+
+                    </div>
+
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

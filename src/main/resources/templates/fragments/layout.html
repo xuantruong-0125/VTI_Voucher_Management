@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Voucher Manager</title>
+
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+</head>
+<body>
+
+<div class="container">
+
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+    <div class="main-content">
+
+        <div th:replace="~{fragments/header :: header}"></div>
+
+        <div class="content">
+            <div th:replace="${content}"></div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

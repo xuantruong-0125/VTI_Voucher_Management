@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Voucher List</title>
+
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/voucher.css}">
+</head>
+<body>
+
+<div class="container">
+
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+    <div class="main-content">
+
+        <div th:replace="~{fragments/header :: header}"></div>
+
+        <div class="content">
+
+            <div class="top-bar">
+
+                <form method="get" th:action="@{/vouchers}">
+                    <input
+                            type="text"
+                            name="keyword"
+                            placeholder="Search by code"
+                            th:value="${keyword}"
+                    >
+
+                    <button type="submit">
+                        Search
+                    </button>
+                </form>
+
+                <a
+                        class="create-btn"
+                        th:href="@{/vouchers/create}"
+                >
+                    Create Voucher
+                </a>
+
+            </div>
+
+            <table>
+
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Code</th>
+                    <th>Discount</th>
+                    <th>Quantity</th>
+                    <th>Expired Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr th:each="voucher : ${vouchers}">
+
+                    <td th:text="${voucher.id}"></td>
+
+                    <td th:text="${voucher.code}"></td>
+
+                    <td th:text="${voucher.discountPercent + '%'}"></td>
+
+                    <td th:text="${voucher.quantity}"></td>
+
+                    <td th:text="${voucher.expiredDate}"></td>
+
+                    <td th:text="${voucher.status}"></td>
+
+                    <td class="actions">
+
+                        <a
+                                class="edit-btn"
+                                th:href="@{'/vouchers/edit/' + ${voucher.id}}"
+                        >
+                            Edit
+                        </a>
+
+                        <a
+                                class="delete-btn"
+                                th:href="@{'/vouchers/delete/' + ${voucher.id}}"
+                                onclick="return confirm('Delete this voucher?')"
+                        >
+                            Delete
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

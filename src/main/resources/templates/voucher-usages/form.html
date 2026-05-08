@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Use Voucher</title>
+
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/usage.css}">
+</head>
+<body>
+
+<div class="container">
+
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+    <div class="main-content">
+
+        <div th:replace="~{fragments/header :: header}"></div>
+
+        <div class="content">
+
+            <div class="form-container">
+
+                <h2>Use Voucher</h2>
+
+                <div
+                        class="success"
+                        th:if="${param.success}"
+                >
+                    Use voucher successfully
+                </div>
+
+                <div
+                        class="error"
+                        th:if="${error}"
+                        th:text="${error}"
+                ></div>
+
+                <form
+                        method="post"
+                        th:action="@{/voucher-usages/use}"
+                >
+
+                    <div class="form-group">
+
+                        <label>User</label>
+
+                        <select
+                                name="userId"
+                                required
+                        >
+
+                            <option value="">
+                                Select User
+                            </option>
+
+                            <option
+                                    th:each="user : ${users}"
+                                    th:value="${user.id}"
+                                    th:text="${user.fullName}"
+                                    th:selected="${voucherUsage.userId == user.id}"
+                            ></option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Voucher</label>
+
+                        <select
+                                name="voucherId"
+                                required
+                        >
+
+                            <option value="">
+                                Select Voucher
+                            </option>
+
+                            <option
+                                    th:each="voucher : ${vouchers}"
+                                    th:value="${voucher.id}"
+                                    th:text="${voucher.code}"
+                                    th:selected="${voucherUsage.voucherId == voucher.id}"
+                            ></option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-actions">
+
+                        <button type="submit">
+                            Use Voucher
+                        </button>
+
+                        <a
+                                class="back-btn"
+                                th:href="@{/voucher-usages}"
+                        >
+                            Back
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
